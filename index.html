@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.css">
+    <title>My Contacts</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="center-align">
+            My Contacts!
+        </h1>
+        <input type="text" id="filterInput" placeholder="Search names...">
+        <ul id="names" class="collection with-header">
+            <li class="collection-header">
+                <h5>A</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Abe</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Adam</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Alan</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Anna</a>
+            </li>
+            <li class="collection-header">
+                <h5>B</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Beth</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Bill</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Bob</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Brad</a>
+            </li>
+            <li class="collection-header">
+                <h5>C</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Carry</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Cathy</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Courtney</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Carmen</a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        //Obtener el elemento input
+        let filterInput = document.getElementById('filterInput');
+        //Event listener
+        filterInput.addEventListener('keyup', filterNames);
+
+        function filterNames() {
+            //Obtener el valor del input
+            let filterValue = document.getElementById('filterInput').value.toUpperCase();
+            
+            //Obtener los nombres de <ul>
+            let ul = document.getElementById('names');
+            //Obtener los nombres del <ul> (los <li>), selectorAll permite seleccionar cualquier cosa basada en el nombre,clase, id, etc.
+            //(reemplaza de alguna manera a JQuery)
+            let names = ul.querySelectorAll('li.collection-item');
+
+            //Loop entre los items
+            for(let i=0; i<names.length; i++) {
+                //Se obtiene el link de la iteración que matchea la condición
+                let a = names[i].getElementsByTagName('a')[0];
+                
+                //Coge lo que hay dentro del tag <a>
+                //Si hay alguna coincidencia entre el input y la lista
+                if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    names[i].style.display = '';
+                } else {
+                    names[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
